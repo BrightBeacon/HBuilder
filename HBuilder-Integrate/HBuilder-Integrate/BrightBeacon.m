@@ -235,9 +235,9 @@ typedef NS_ENUM(NSUInteger, iBeaconError) {
     }
     NSUUID *regionUUID = [[NSUUID alloc] initWithUUIDString:uuid];
     CLBeaconRegion *region = nil;
-    if (minor.length) {
+    if (minor) {
         region = [[CLBeaconRegion alloc] initWithProximityUUID:regionUUID major:major.intValue minor:minor.intValue identifier:identifier?:uuid];
-    }else if(major.length) {
+    }else if(major) {
         region = [[CLBeaconRegion alloc] initWithProximityUUID:regionUUID major:major.intValue identifier:identifier?:uuid];
     }else {
         region = [[CLBeaconRegion alloc] initWithProximityUUID:regionUUID identifier:identifier?:uuid];
@@ -305,7 +305,7 @@ typedef NS_ENUM(NSUInteger, iBeaconError) {
     NSDictionary *advertise = nil;
     if (region) {
         NSDictionary* regionDic = [commands.arguments objectAtIndex:1];
-        NSString *mpower = [regionDic valueForKey:@"measuredpower"];
+        NSNumber *mpower = [regionDic valueForKey:@"measuredpower"];
         advertise = [region peripheralDataWithMeasuredPower:mpower?@(mpower.intValue):@-65];
     }
     if (advertise == nil) {
@@ -325,8 +325,13 @@ typedef NS_ENUM(NSUInteger, iBeaconError) {
     
     [self.callbackIds setObject:pcbid forKey:NSStringFromSelector(_cmd)];
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],CBCentralManagerOptionShowPowerAlertKey, nil];
-    self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) options:options];
-    [self.peripheralManager startAdvertising:advertise];
+    if(!self.peripheralManager)self.peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) options:options];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [NSThread sleepForTimeInterval:1];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.peripheralManager startAdvertising:advertise];
+        });
+    });
 }
 
 - (void)peripheralManagerDidStartAdvertising:(CBPeripheralManager *)peripheral error:(nullable NSError *)error {

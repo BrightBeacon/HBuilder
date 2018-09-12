@@ -126,7 +126,7 @@
         }
         function startAdvertising()
         {
-            plus.iBeacon.startAdvertising(function(result){
+            plus.iBeacon.startAdvertising({"uuid":"FDA50693-A4E2-4FB1-AFCF-C6EB07647825","major":65535,"minor":0,"identifier":"test","measuredpower":-60},function(result){
                                                        var cont = document.getElementById('list');
                                                        var htmlcode = JSON.stringify(result);
                                                        cont.innerHTML = htmlcode;

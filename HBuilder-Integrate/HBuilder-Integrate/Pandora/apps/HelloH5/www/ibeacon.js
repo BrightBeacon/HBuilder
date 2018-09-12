@@ -160,7 +160,7 @@ document.addEventListener( "plusready",  function()
 			callbackID = B.callbackId(success, fail);
 			return B.execSync(_BARCODE, "onAppStartByLocalNotification", [callbackID]);
 		},
-		startAdvertising : function (ibeacon, successCallback, errorCallback)
+		startAdvertising : function (region, successCallback, errorCallback)
 		{
 			var success = typeof successCallback !== 'function' ? null : function(args)
 			{
