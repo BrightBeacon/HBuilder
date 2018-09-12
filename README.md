@@ -175,6 +175,6 @@ iPad mini均可以
 ```
 
 ## 相关文档或网站
-* [API文档](http://brightbeacon.github.io/BrightBeacon_iOS_SDK)
+* [API文档](https://brightbeacon.github.io/iBeaconForHBuilder)
 * [开发者社区](http://bbs.brtbeacon.com)
 * [智石官网](http://www.brtbeacon.com)
