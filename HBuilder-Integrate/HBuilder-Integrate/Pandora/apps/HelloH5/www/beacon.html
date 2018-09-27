@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="MobileOptimized" content="320"/>
+        <title>H5Plugin</title>
+        <script type="text/javascript" src="./js/common.js"></script>
+        <script type="text/javascript" src="./beacon.js"></script>
+        <link rel="stylesheet" href="./css/common.css" type="text/css" charset="utf-8" />
+
+        <script type="text/javascript">
+            // H5 plus事件处理
+            function plusReady(){
+                switch ( plus.os.name ) {
+                    case "iOS":
+                    // 导入类
+                    startMonitoringForRegion();
+                    break;
+                }
+            }
+        if(window.plus){
+            plusReady();
+        }else{
+            document.addEventListener("plusready",plusReady,false);
+        }
+        function startBeaconDiscovery() {
+            plus.beacon.startBeaconDiscovery({"uuids":["FDA50693-A4E2-4FB1-AFCF-C6EB07647825"]},function(result){
+                                                        var cont = document.getElementById('list');
+                                                        var htmlcode = JSON.stringify(result);
+                                                        cont.innerHTML = htmlcode;
+                                                     });
+        }
+        
+        function onBeaconUpdate()
+        {
+            plus.beacon.onBeaconUpdate(function(result){
+                                                        var cont = document.getElementById('list');
+                                                        var htmlcode = JSON.stringify(result);
+                                                        cont.innerHTML = htmlcode;
+                                                     });
+        }
+        
+        
+        function stopBeaconDiscovery()
+        {
+            plus.beacon.stopBeaconDiscovery();
+        }
+        
+        
+        function onBeaconServiceChange()
+        {
+            plus.beacon.onBeaconServiceChange(function(result){
+                                              var cont = document.getElementById('list');
+                                              var htmlcode = JSON.stringify(result);
+                                              cont.innerHTML = htmlcode;
+                                              });
+        }
+        
+        function getBeacons()
+        {
+            plus.beacon.getBeacons(function(result){
+                                              var cont = document.getElementById('list');
+                                              var htmlcode = JSON.stringify(result);
+                                              cont.innerHTML = htmlcode;
+                                              });
+        }
+        
+            </script>
+        <link rel="stylesheet" href="./css/common.css" type="text/css" charset="utf-8"/>
+        <script type="text/javascript" src="js/immersed.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="nvbt iback" onclick="alert(window.back);"></div>
+            <div class="nvtt">HBuilder-Plugin</div>
+        </header>
+        <div id="dcontent" class="dcontent">
+            <br/>
+            <div class="button" onclick="onBeaconServiceChange()">扫描服务回调</div>
+            <div class="button" onclick="startBeaconDiscovery()">开始iBeacon扫描</div>
+            <div class="button" onclick="stopBeaconDiscovery()">停止iBeacon扫描</div>
+            <div class="button" onclick="onBeaconUpdate()">自动回调扫描到设备</div>
+            <div class="button" onclick="getBeacons()">获取扫描的设备</div>
+            <br/>
+            <div id="list">
+            </div>
+        </div>
+    </body>
+</html>

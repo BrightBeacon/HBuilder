@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		180CF1162133F0D400C00AD1 /* BrightBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 180CF1152133F0D400C00AD1 /* BrightBeacon.m */; };
 		187D03D62148AFAF00939866 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187D03D52148AFAF00939866 /* MediaPlayer.framework */; };
 		187D03D82148AFC400939866 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187D03D72148AFC400939866 /* AudioToolbox.framework */; };
 		187D03DA2148B0D100939866 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187D03D92148B0D100939866 /* StoreKit.framework */; };
@@ -16,6 +15,7 @@
 		187D03E22148B1B500939866 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187D03E12148B1B500939866 /* JavaScriptCore.framework */; };
 		187D03E42148B1D700939866 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187D03E32148B1D700939866 /* MobileCoreServices.framework */; };
 		187D03E62148B22D00939866 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 187D03E52148B22D00939866 /* WebKit.framework */; };
+		187F91AF214F896700C4DBC7 /* Beacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 187F91AE214F896700C4DBC7 /* Beacon.m */; };
 		244737361D08364300D0F08F /* WebAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 244737331D08364300D0F08F /* WebAppController.m */; };
 		244737371D08364300D0F08F /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 244737351D08364300D0F08F /* WebViewController.m */; };
 		8E175F201A37B93C004A45F6 /* HBuilder-Integrate-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8E175F1D1A37B93C004A45F6 /* HBuilder-Integrate-Info.plist */; };
@@ -31,8 +31,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		180CF1142133F0D400C00AD1 /* BrightBeacon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BrightBeacon.h; path = "HBuilder-Integrate/BrightBeacon.h"; sourceTree = SOURCE_ROOT; };
-		180CF1152133F0D400C00AD1 /* BrightBeacon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BrightBeacon.m; path = "HBuilder-Integrate/BrightBeacon.m"; sourceTree = SOURCE_ROOT; };
 		187D03D52148AFAF00939866 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		187D03D72148AFC400939866 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		187D03D92148B0D100939866 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -42,6 +40,8 @@
 		187D03E12148B1B500939866 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		187D03E32148B1D700939866 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		187D03E52148B22D00939866 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		187F91AD214F896700C4DBC7 /* Beacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Beacon.h; path = "HBuilder-Integrate/Beacon.h"; sourceTree = SOURCE_ROOT; };
+		187F91AE214F896700C4DBC7 /* Beacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Beacon.m; path = "HBuilder-Integrate/Beacon.m"; sourceTree = SOURCE_ROOT; };
 		244737321D08364300D0F08F /* WebAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebAppController.h; path = "HBuilder-Integrate/WebAppController.h"; sourceTree = SOURCE_ROOT; };
 		244737331D08364300D0F08F /* WebAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebAppController.m; path = "HBuilder-Integrate/WebAppController.m"; sourceTree = SOURCE_ROOT; };
 		244737341D08364300D0F08F /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = "HBuilder-Integrate/WebViewController.h"; sourceTree = SOURCE_ROOT; };
@@ -132,8 +132,8 @@
 				244737331D08364300D0F08F /* WebAppController.m */,
 				244737341D08364300D0F08F /* WebViewController.h */,
 				244737351D08364300D0F08F /* WebViewController.m */,
-				180CF1142133F0D400C00AD1 /* BrightBeacon.h */,
-				180CF1152133F0D400C00AD1 /* BrightBeacon.m */,
+				187F91AD214F896700C4DBC7 /* Beacon.h */,
+				187F91AE214F896700C4DBC7 /* Beacon.m */,
 				8E175F5C1A37BE9C004A45F6 /* Main_iPhone.storyboard */,
 				8E175F511A37B9DC004A45F6 /* Pandora */,
 				8E175F461A37B9C5004A45F6 /* AppDelegate.h */,
@@ -235,7 +235,7 @@
 				8E175F4D1A37B9C5004A45F6 /* AppDelegate.m in Sources */,
 				244737371D08364300D0F08F /* WebViewController.m in Sources */,
 				8E175F221A37B949004A45F6 /* main.m in Sources */,
-				180CF1162133F0D400C00AD1 /* BrightBeacon.m in Sources */,
+				187F91AF214F896700C4DBC7 /* Beacon.m in Sources */,
 				244737361D08364300D0F08F /* WebAppController.m in Sources */,
 				8E175F501A37B9C5004A45F6 /* ViewController.m in Sources */,
 			);
