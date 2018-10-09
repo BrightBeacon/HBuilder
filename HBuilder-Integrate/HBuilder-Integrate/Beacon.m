@@ -24,7 +24,7 @@
 
 - (void)dealloc {
     [super dealloc];
-    [self startBeaconDiscovery:nil];
+    [self stopBeaconDiscovery:nil];
     self.locationManager = nil;
     self.iBeacons = nil;
     self.centralManager = nil;
