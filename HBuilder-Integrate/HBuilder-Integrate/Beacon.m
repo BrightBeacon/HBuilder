@@ -41,7 +41,7 @@
         [self.locationManager requestAlwaysAuthorization];
         [self.locationManager requestWhenInUseAuthorization];
     }
-    NSArray *uuids = [command.arguments objectAtIndex:1][@"uuids"];
+    NSArray *uuids = [command.arguments objectAtIndex:1];
     for (NSString *uuidStr in uuids) {
         NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:uuidStr];
         [self.locationManager startRangingBeaconsInRegion:[[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:uuidStr]];
@@ -53,7 +53,7 @@
     for (CLBeaconRegion *region in regions) {
         [self.locationManager stopRangingBeaconsInRegion:region];
     }
-    if (command) {
+    if (command.arguments.count) {
         NSString *cbid = [command.arguments objectAtIndex:0];
         [self toSucessCallback:cbid withJSON:@{@"errMsg":@"ok"}];
     }
@@ -77,7 +77,7 @@
     NSMutableArray *result = [NSMutableArray array];
     for (NSArray *ibeacons in self.iBeacons.allValues) {
         for (CLBeacon *beacon in ibeacons) {
-            [result addObject:@{@"uuid":beacon.proximityUUID.UUIDString,@"major":beacon.major.stringValue,@"minor":beacon.minor.stringValue,@"rssi":@(beacon.rssi),@"accuracy":@(beacon.accuracy),@"proximity":@(beacon.proximity)}];
+            if(beacon.rssi<0)[result addObject:@{@"uuid":beacon.proximityUUID.UUIDString,@"major":beacon.major.stringValue,@"minor":beacon.minor.stringValue,@"rssi":@(beacon.rssi),@"accuracy":@(beacon.accuracy),@"proximity":@(beacon.proximity)}];
         }
     }
     return result;

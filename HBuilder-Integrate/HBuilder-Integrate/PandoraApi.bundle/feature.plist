@@ -11,14 +11,5 @@
 		<key>autostart</key>
 		<true/>
 	</dict>
-	<key>iBeacon</key>
-	<dict>
-		<key>class</key>
-		<string>BrightBeacon</string>
-		<key>global</key>
-		<true/>
-		<key>autostart</key>
-		<true/>
-	</dict>
 </dict>
 </plist>

@@ -15,6 +15,7 @@
             function plusReady(){
                 switch ( plus.os.name ) {
                     case "iOS":
+                    alert(plus.beacon);
                     // 导入类
                     startMonitoringForRegion();
                     break;
@@ -26,20 +27,21 @@
             document.addEventListener("plusready",plusReady,false);
         }
         function startBeaconDiscovery() {
-            plus.beacon.startBeaconDiscovery({"uuids":["FDA50693-A4E2-4FB1-AFCF-C6EB07647825"]},function(result){
+            plus.beacon.startBeaconDiscovery({uuids:["FDA50693-A4E2-4FB1-AFCF-C6EB07647825"],
+                                             success:function(result){
                                                         var cont = document.getElementById('list');
                                                         var htmlcode = JSON.stringify(result);
                                                         cont.innerHTML = htmlcode;
-                                                     });
+                                             }});
         }
         
         function onBeaconUpdate()
         {
-            plus.beacon.onBeaconUpdate(function(result){
+            plus.beacon.onBeaconUpdate({success:function(result){
                                                         var cont = document.getElementById('list');
                                                         var htmlcode = JSON.stringify(result);
                                                         cont.innerHTML = htmlcode;
-                                                     });
+                                       }});
         }
         
         
@@ -51,20 +53,20 @@
         
         function onBeaconServiceChange()
         {
-            plus.beacon.onBeaconServiceChange(function(result){
+            plus.beacon.onBeaconServiceChange({success:function(result){
                                               var cont = document.getElementById('list');
                                               var htmlcode = JSON.stringify(result);
                                               cont.innerHTML = htmlcode;
-                                              });
+                                              }});
         }
         
         function getBeacons()
         {
-            plus.beacon.getBeacons(function(result){
+            plus.beacon.getBeacons({success:function(result){
                                               var cont = document.getElementById('list');
                                               var htmlcode = JSON.stringify(result);
                                               cont.innerHTML = htmlcode;
-                                              });
+                                   }});
         }
         
             </script>
@@ -78,10 +80,10 @@
         </header>
         <div id="dcontent" class="dcontent">
             <br/>
-            <div class="button" onclick="onBeaconServiceChange()">扫描服务回调</div>
-            <div class="button" onclick="startBeaconDiscovery()">开始iBeacon扫描</div>
+            <div class="button" onclick="onBeaconServiceChange()">检查扫描服务</div>
+            <div class="button" onclick="startBeaconDiscovery()">打开iBeacon扫描</div>
             <div class="button" onclick="stopBeaconDiscovery()">停止iBeacon扫描</div>
-            <div class="button" onclick="onBeaconUpdate()">自动回调扫描到设备</div>
+            <div class="button" onclick="onBeaconUpdate()">回调扫描到设备</div>
             <div class="button" onclick="getBeacons()">获取扫描的设备</div>
             <br/>
             <div id="list">
