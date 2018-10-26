@@ -1,16 +1,16 @@
 //
-//  wxBeacon.m
+//  ibeacon.m
 //  HBuilder
 //
 //  Created by apple on 2018/9/17.
 //  Copyright © 2018年 DCloud. All rights reserved.
 //
 
-#import "Beacon.h"
+#import "ibeacon.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface Beacon ()<CLLocationManagerDelegate,CBCentralManagerDelegate>
+@interface ibeacon ()<CLLocationManagerDelegate,CBCentralManagerDelegate>
 
 @property (nonatomic,strong) CLLocationManager      *locationManager;
 @property (nonatomic,strong) NSMutableDictionary    *iBeacons;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation Beacon
+@implementation ibeacon
 
 - (void)dealloc {
     [super dealloc];

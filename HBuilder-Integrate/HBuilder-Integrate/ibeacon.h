@@ -9,7 +9,7 @@
 #include "PGPlugin.h"
 #include "PGMethod.h"
 
-@interface Beacon : PGPlugin
+@interface ibeacon : PGPlugin
 
 
 /**

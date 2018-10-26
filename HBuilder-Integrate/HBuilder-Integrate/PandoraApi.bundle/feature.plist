@@ -5,7 +5,7 @@
 	<key>ibeacon</key>
 	<dict>
 		<key>class</key>
-		<string>Beacon</string>
+		<string>ibeacon</string>
 		<key>global</key>
 		<true/>
 		<key>autostart</key>
