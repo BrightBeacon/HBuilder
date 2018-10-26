@@ -15,6 +15,7 @@ iPad mini均可以
 详情见：[http://en.wikipedia.org/wiki/List_of_iOS_devices](http://en.wikipedia.org/wiki/List_of_iOS_devices)
 
 ## 更新日志
+ *  1.0.1 sync iBeacon API with android
  *  1.0.0 Plugin for scan iBeacon
  
 ## API使用说明
