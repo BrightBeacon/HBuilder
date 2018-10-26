@@ -7,7 +7,7 @@
         <meta name="MobileOptimized" content="320"/>
         <title>H5Plugin</title>
         <script type="text/javascript" src="./js/common.js"></script>
-        <script type="text/javascript" src="./beacon.js"></script>
+        <script type="text/javascript" src="./ibeacon.js"></script>
         <link rel="stylesheet" href="./css/common.css" type="text/css" charset="utf-8" />
 
         <script type="text/javascript">
@@ -15,7 +15,7 @@
             function plusReady(){
                 switch ( plus.os.name ) {
                     case "iOS":
-                    alert(plus.beacon);
+                    alert(plus.ibeacon);
                     // 导入类
                     startMonitoringForRegion();
                     break;
@@ -27,7 +27,7 @@
             document.addEventListener("plusready",plusReady,false);
         }
         function startBeaconDiscovery() {
-            plus.beacon.startBeaconDiscovery({uuids:["FDA50693-A4E2-4FB1-AFCF-C6EB07647825"],
+            plus.ibeacon.startBeaconDiscovery({uuids:["FDA50693-A4E2-4FB1-AFCF-C6EB07647825"],
                                              success:function(result){
                                                         var cont = document.getElementById('list');
                                                         var htmlcode = JSON.stringify(result);
@@ -37,7 +37,7 @@
         
         function onBeaconUpdate()
         {
-            plus.beacon.onBeaconUpdate({success:function(result){
+            plus.ibeacon.onBeaconUpdate({success:function(result){
                                                         var cont = document.getElementById('list');
                                                         var htmlcode = JSON.stringify(result);
                                                         cont.innerHTML = htmlcode;
@@ -47,13 +47,13 @@
         
         function stopBeaconDiscovery()
         {
-            plus.beacon.stopBeaconDiscovery();
+            plus.ibeacon.stopBeaconDiscovery();
         }
         
         
         function onBeaconServiceChange()
         {
-            plus.beacon.onBeaconServiceChange({success:function(result){
+            plus.ibeacon.onBeaconServiceChange({success:function(result){
                                               var cont = document.getElementById('list');
                                               var htmlcode = JSON.stringify(result);
                                               cont.innerHTML = htmlcode;
@@ -62,7 +62,7 @@
         
         function getBeacons()
         {
-            plus.beacon.getBeacons({success:function(result){
+            plus.ibeacon.getBeacons({success:function(result){
                                               var cont = document.getElementById('list');
                                               var htmlcode = JSON.stringify(result);
                                               cont.innerHTML = htmlcode;
