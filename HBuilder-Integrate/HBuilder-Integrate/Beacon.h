@@ -41,4 +41,7 @@
  */
 - (void)onBeaconServiceChange:(PGMethod *)command;
 
+- (void)openBluetoothAdapter:(PGMethod *)command;
+- (void)closeBluetoothAdapter:(PGMethod *)command;
+- (void)getBluetoothAdapterState:(PGMethod *)command;
 @end

@@ -107,4 +107,30 @@
     }
     [self toSucessCallback:self.onBeaconServiceChangeCBID withJSON:@{@"available":@(available),@"discovering":@(discovering),@"errMsg":errMsg} keepCallback:YES];
 }
+
+#pragma mark - **************** nonuse.
+
+- (void)openBluetoothAdapter:(PGMethod *)command {
+    if (command.arguments.count) {
+        [self toSucessCallback:command.arguments.firstObject withJSON:@{@"errMsg":@"ok"}];
+    }
+}
+
+- (void)closeBluetoothAdapter:(PGMethod *)command {
+    if (command.arguments.count) {
+        [self toSucessCallback:command.arguments.firstObject withJSON:@{@"errMsg":@"ok"}];
+    }
+}
+
+- (void)getBluetoothAdapterState:(PGMethod *)command {
+    NSString *errMsg = @"ok";
+    if (![CLLocationManager isRangingAvailable]) {
+        errMsg = @"unsupport";
+    }
+    if (self.centralManager && self.centralManager.state != 5) {
+        errMsg = @"bluetooth service unavailable";
+    }
+    [self toSucessCallback:command.arguments.firstObject withJSON:@{@"errMsg":errMsg}];
+}
+
 @end
