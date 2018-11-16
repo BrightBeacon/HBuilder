@@ -21,26 +21,20 @@
 			}
 
 			function startLocation() {
-				plus.ibeacon.startBeaconDiscovery({
-					uuids: ["FDA50693-A4E2-4FB1-AFCF-C6EB07647825"],
-                    success:function(rlt) {
-                      if(rlt.errMsg == 'ok') {
-                         plus.ibeacon.onBeaconUpdate({success:function(result){
-                                                    if(result.beacons && result.beacons.length > 0) {
-                                                        var win = document.getElementById("ifr").contentWindow;
-                                                        var params = {
-                                                            "key": "onSearchBeacons",
-                                                            "value": result
-                                                        };
-                                                        win.postMessage(JSON.stringify(params), "*");
-                                                    }
-                         }});
-                     }else{
-                        alert(rlt.errMsg);
-                     }
-                   }
-				});
-			}
+				plus.ibeacon.startBeaconDiscovery({uuids: ["FDA50693-A4E2-4FB1-AFCF-C6EB07647825"]});
+                
+                plus.ibeacon.onBeaconUpdate(function(result){
+                                            if(result.beacons && result.beacons.length > 0) {
+                                                var win = document.getElementById("ifr").contentWindow;
+                                                var params = {
+                                                    "key": "onSearchBeacons",
+                                                    "value": result
+                                                };
+                                                win.postMessage(JSON.stringify(params), "*");
+                                            //alert(JSON.stringify(params));
+                                            }
+                                            });
+            }
 
 			function disappear() {
 				plus.ibeacon.stopBeaconDiscovery();
@@ -50,7 +44,7 @@
 	</head>
 
 	<body>
-		<iframe id="ifr" src="http://p.brtbeacon.net/bb/crh/navigator.html?signa=9250019a13c24d969d445d1072685785" frameborder="no" scrolling="no" style="width: 100%;height: 100%;margin-top: 0px;border:0 none;frameborder:0;" onLoad="setTimeout(startLocation,3000)"></iframe>
+        <iframe id="ifr" src="http://p.brtbeacon.net/test/pro-maintain/Rail-CQ/navigator.html?signa=b6fbf378ae344f84917f690f420e1d77" frameborder="no" scrolling="no" style="width: 100%;height: 100%;margin-top: 0px;border:0 none;frameborder:0;" onLoad="setTimeout(startLocation,3000)"></iframe>
 	</body>
 
 </html>

@@ -42,6 +42,10 @@
         [self.locationManager requestWhenInUseAuthorization];
     }
     NSArray *uuids = [command.arguments objectAtIndex:1];
+    if ([uuids isEqual:[NSNull null]]) {
+        [self toErrorCallback:cbid withCode:10000 withMessage:@"uuids not found."];
+        return;
+    }
     for (NSString *uuidStr in uuids) {
         NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:uuidStr];
         [self.locationManager startRangingBeaconsInRegion:[[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:uuidStr]];

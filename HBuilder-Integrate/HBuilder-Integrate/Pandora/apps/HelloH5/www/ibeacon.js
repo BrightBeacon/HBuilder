@@ -136,23 +136,11 @@ document.addEventListener("plusready", function() {
 
 			return B.exec(_BARCODE, "getBeacons", [callbackID]);
 		},
-		onBeaconUpdate: function(params) {
-			if(params == undefined) {
+		onBeaconUpdate: function(success) {
+			if(success == undefined) {
 				return B.exec(_BARCODE, "onBeaconUpdate", []);
 			}
-			var complete = function(args) {
-				if(typeof params.complete === 'function') params.complete(args);
-			};
-			var success = typeof params.success !== 'function' ? complete : function(args) {
-					params.success(args);
-					complete(args);
-				},
-				fail = typeof params.fail !== 'function' ? complete : function(args) {
-					params.fail(args);
-					complete(args);
-				};
-			var callbackID = B.callbackId(success, fail);
-
+			var callbackID = B.callbackId(success);
 			return B.exec(_BARCODE, "onBeaconUpdate", [callbackID]);
 		},
 		onBeaconServiceChange: function(params) {
